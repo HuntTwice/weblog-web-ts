@@ -1,0 +1,267 @@
+/* 基本样式 */
+// 重置所有元素的默认内外边距，统一盒模型为 border-box（宽度 / 高度包含边框和内边距，避免布局错乱），
+// 强制取消元素获取焦点时的默认外轮廓（比如输入框的蓝色边框）
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none !important; //表示最高优先级
+}
+
+// 这是 Vue 项目的根容器层级，设置为全屏尺寸（宽高 100%），统一字体（兼容不同系统 / 浏览器的中文字体），
+// 开启字体抗锯齿（让文字更清晰），取消移动端点击元素的高亮背景，
+// 同时基于 Element Plus 和自定义的 CSS 变量（--ba-bg-color、--el-text-color-primary 等）统一背景色、文字色和基础字号，
+// 适配主题切换（比如暗黑模式）。
+html,
+body,
+#app {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family:
+        Helvetica Neue,
+        Helvetica,
+        PingFang SC,
+        Hiragino Sans GB,
+        Microsoft YaHei,
+        SimSun,
+        sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    background-color: var(--ba-bg-color);
+    color: var(--el-text-color-primary);
+    font-size: var(--el-font-size-base);
+}
+
+// 阿里 iconfont Symbol引用css
+.iconfont-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+.w100 {
+    width: 100% !important;
+}
+.h100 {
+    height: 100% !important;
+}
+// 快速实现元素水平 + 垂直居中（flex 布局）
+.ba-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// 页面主体内容的默认边距（使用自定义变量 --ba-main-space，方便统一修改），底部留 60px 避免内容被底部栏遮挡。
+.default-main {
+    margin: var(--ba-main-space) var(--ba-main-space) 60px var(--ba-main-space);
+}
+
+// 用于可缩放元素的 “拖拽调整尺寸” 手柄（比如弹窗 / 面板的右下角），鼠标悬停显示 “东南方向调整尺寸” 光标。
+.zoom-handle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: -10px;
+    right: -10px;
+    cursor: se-resize;
+}
+
+// 表单 / 组件下方的辅助说明文字样式（灰色、小字号）。
+.block-help {
+    display: block;
+    width: 100%;
+    color: #909399;
+    font-size: 13px;
+    line-height: 16px;
+    padding-top: 5px;
+}
+
+/* 表格顶部菜单-s */
+// 嵌套写法（SCSS 特性）：只修改 .table-header 容器内的操作按钮图标样式 —— 正常状态图标白色，禁用状态用 Element Plus 内置的 “禁用文字色”。
+.table-header {
+    .table-header-operate .icon {
+        font-size: 14px !important;
+        color: var(--el-color-white) !important;
+    }
+    .el-button.is-disabled .icon {
+        color: var(--el-button-disabled-text-color) !important;
+    }
+}
+/* 表格顶部菜单-e */
+
+/* 鼠标置入浮动效果-s */
+// 给元素添加 “悬浮上浮 + 轻微放大 + 阴影加深” 的动效（兼容多浏览器前缀），提升交互体验（比如卡片、按钮、列表项），transition 让动效平滑过渡。
+.suspension {
+    transition: all 0.3s ease;
+}
+.suspension:hover {
+    -webkit-transform: translateY(-4px) scale(1.02);
+    -moz-transform: translateY(-4px) scale(1.02);
+    -ms-transform: translateY(-4px) scale(1.02);
+    -o-transform: translateY(-4px) scale(1.02);
+    transform: translateY(-4px) scale(1.02);
+    -webkit-box-shadow: 0 14px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.2);
+    z-index: 2147483600;
+    border-radius: 6px;
+}
+/* 鼠标置入浮动效果-e */
+
+/* 表格-s */
+// 定制表格容器的圆角、表格上方提示框（alert）的背景色和边框（取消底部边框，让提示框和表格无缝衔接）。
+.ba-table-box {
+    border-radius: var(--el-border-radius-round);
+}
+.ba-table-alert {
+    background-color: var(--el-fill-color-darker) !important;
+    border: 1px solid var(--ba-boder-color);
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+/* 表格-e */
+
+/* 新增/编辑表单-s */
+// 定制新增 / 编辑表单的弹窗样式：固定弹窗底部按钮栏（绝对定位）、设置表单主体高度（58vh，适配不同屏幕）、头部加分割线、统一圆角和内边距。
+.ba-operate-dialog {
+    overflow: hidden;
+    border-radius: var(--el-border-radius-base);
+    padding-bottom: 52px;
+}
+.ba-operate-dialog .el-dialog__header {
+    border-bottom: 1px solid var(--ba-bg-color);
+    .el-dialog__headerbtn {
+        top: 4px;
+    }
+}
+// 后代选择器
+.ba-operate-dialog .el-dialog__body {
+    height: 58vh;
+}
+.ba-operate-dialog .el-dialog__footer {
+    padding: 10px var(--el-dialog-padding-primary);
+    box-shadow: var(--el-box-shadow);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+.ba-operate-form {
+    padding-top: 20px;
+}
+/* 新增/编辑表单-e */
+
+/* 全局遮罩-s */
+// 全局遮罩层（比如加载中 / 弹窗遮罩）：全屏覆盖、半透明黑色，z-index 接近最大值（避免被遮挡）。
+.ba-layout-shade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2147483599;
+}
+/* 全局遮罩-e */
+
+/* 图片上传预览-s */
+// 让图片在弹窗中居中显示，且不超出弹窗宽度
+.img-preview-dialog .el-dialog__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        max-width: 100%;
+    }
+}
+/* 图片上传预览-e */
+
+/* 页面切换动画-s */
+// 基于 Vue 的 <transition> 组件实现页面 / 组件切换的滑动动画：
+//slide-right：进入时从左滑入，离开时向右滑出；
+//slide-left：复用 slide-right 的样式（SCSS 的 @extend），方向相反；
+//will-change 告诉浏览器提前优化动效，提升流畅度。
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+    will-change: transform;
+    transition: all 0.3s ease;
+}
+// slide-right
+.slide-right-enter-from {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+.slide-right-leave-to {
+    opacity: 0;
+    transform: translateX(20px);
+}
+// slide-left
+.slide-left-enter-from {
+    @extend .slide-right-leave-to;
+}
+.slide-left-leave-to {
+    @extend .slide-right-enter-from;
+}
+/* 页面切换动画-e */
+
+/* 布局相关-s */
+.frontend-footer-brother {
+    min-height: calc(100vh - 120px);
+}
+.user-views {
+    padding-left: 15px;
+    .user-views-card {
+        margin-bottom: 15px;
+    }
+}
+.ba-aside-drawer {
+    .el-drawer__body {
+        padding: 0; //取消默认内边距，适配自定义布局
+    }
+}
+/* 布局相关-e */
+
+/* 暗黑模式公共样式-s */
+.ba-icon-dark {
+    color: var(--el-text-color-primary) !important;
+}
+/* 暗黑模式公共样式-e */
+
+/* NProgress-s */
+#nprogress {
+    .bar,
+    .spinner {
+        z-index: 2147483600; //提升进度条的 z-index，确保不会被其他元素遮挡
+    }
+}
+/* NProgress-e */
+
+/* 自适应-s */
+// 响应式适配（移动端 / 平板）
+// 768px 以下（手机）：隐藏带 .xs-hidden 的元素；
+// 1024px 以下（平板）：表单弹窗宽度占屏幕 96%，适配小屏；
+// 991px 以下：取消用户视图的左侧内边距，优化布局。
+@media screen and (max-width: 768px) {
+    .xs-hidden {
+        display: none;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .ba-operate-dialog {
+        width: 96%;
+    }
+}
+@media screen and (max-width: 991px) {
+    .user-views {
+        padding: 0;
+    }
+}
+/* 自适应-e */
