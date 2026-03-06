@@ -51,24 +51,6 @@ export interface Layout {
     /* 顶栏 - e */
 }
 
-export interface Lang {
-    // 默认语言，可选值<zh-cn|en>
-    defaultLang: string
-    // 当在默认语言包找不到翻译时，继续在 fallbackLang 语言包内查找翻译
-    fallbackLang: string
-    // 支持的语言列表
-    langArray: { name: string; value: string }[]
-}
-
-export interface Crud {
-    // 日志同步方式
-    syncType: 'manual' | 'automatic'
-    // 已同步记录被更新时，是否自动重新同步
-    syncedUpdate: 'no' | 'yes'
-    // 自动同步时是否分享至开源社区
-    syncAutoPublic: 'no' | 'yes'
-}
-
 export interface NavTabs {
     // 激活 tab 的 index
     activeIndex: number
@@ -82,98 +64,6 @@ export interface NavTabs {
     tabsViewRoutes: RouteRecordRaw[]
     // 权限节点
     authNode: Map<string, string[]>
-}
-
-export interface MemberCenter {
-    // 是否开启会员中心
-    open: boolean
-    // 布局模式
-    layoutMode: string
-    // 从后台加载到的菜单
-    viewRoutes: RouteRecordRaw[]
-    // 是否显示一级菜单标题（当有多个一级菜单分组时显示）
-    showHeadline: boolean
-    // 权限节点
-    authNode: Map<string, string[]>
-    // 收缩布局（小屏设备）
-    shrink: boolean
-    // 菜单展开状态（小屏设备）
-    menuExpand: boolean
-    // 顶栏会员菜单下拉项
-    navUserMenus: RouteRecordRaw[]
-}
-
-export interface AdminInfo {
-    id: number
-    username: string
-    nickname: string
-    avatar: string
-    last_login_time: string
-    token: string
-    refresh_token: string
-    // 是否是 superAdmin，用于判定是否显示终端按钮等，不做任何权限判断
-    super: boolean
-}
-
-export interface UserInfo {
-    id: number
-    username: string
-    nickname: string
-    email: string
-    mobile: string
-    gender: number
-    birthday: string
-    money: number
-    score: number
-    avatar: string
-    last_login_time: string
-    last_login_ip: string
-    join_time: string
-    motto: string
-    token: string
-    refresh_token: string
-}
-
-export interface TaskItem {
-    // 任务唯一标识
-    uuid: string
-    // 创建时间
-    createTime: string
-    // 状态
-    status: number
-    // 命令
-    command: string
-    // 命令执行日志
-    message: string[]
-    // 显示命令执行日志
-    showMessage: boolean
-    // 失败阻断后续命令执行
-    blockOnFailure: boolean
-    // 扩展信息，自动发送到后台
-    extend: string
-    // 执行结果回调
-    callback: Function
-}
-
-export interface Terminal {
-    // 显示终端窗口
-    show: boolean
-    // 在后台终端按钮上显示一个红点
-    showDot: boolean
-    // 任务列表
-    taskList: TaskItem[]
-    // 包管理器
-    packageManager: string
-    // 显示终端设置窗口
-    showConfig: boolean
-    // 开始任务时自动清理已完成任务
-    automaticCleanupTask: string
-    // PHP 开发服务环境
-    phpDevelopmentServer: boolean
-    // NPM 源
-    npmRegistry: string
-    // composer 源
-    composerRegistry: string
 }
 
 export interface SiteConfig {

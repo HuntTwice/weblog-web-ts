@@ -1,0 +1,43 @@
+import { defineStore } from 'pinia'
+import { reactive } from 'vue'
+import type { Layout } from '/@/stores/interface'
+
+export const useConfig = defineStore('config', () => {
+    const layout: Layout = reactive({
+        //全局
+        showDrawer: false,
+        shrink: false,
+        layoutMode: 'Classic',
+        isDark: false,
+        mainAnimation: 'slide-right',
+
+        //侧边栏
+        menuBackground: ['#ffffff', '#1d1e1f'],
+        menuColor: ['#303133', '#CFD3DC'],
+        menuActiveBackground: ['#ffffff', '#1d1e1f'],
+        menuActiveColor: ['#409eff', '#3375b9'],
+        menuTopBarBackground: ['#fcfcfc', '#1d1e1f'],
+        menuWidth: 260,
+        menuDefaultIcon: 'fa fa-circle-o',
+        menuCollapse: false,
+        menuUniqueOpened: false,
+        menuShowTopBar: true,
+
+        //顶栏
+        headerBarBackground: [],
+        headerBarHoverBackground: [],
+        headerBarTabActiveBackground: [],
+        headerBarTabActiveColor: [],
+        headerBarTabColor: [],
+    })
+
+    const getColorVal = function (name: keyof Layout): string {
+        const colors = layout[name] as string[]
+        if (layout.isDark) {
+            return colors[1]
+        } else {
+            return colors[0]
+        }
+    }
+    return { layout, getColorVal }
+})
