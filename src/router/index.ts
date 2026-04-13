@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import BackendLayout from '../layouts/index.vue'
+import BackendLayout from '/@/layouts/backend/index.vue'
 import Home from '/@/views/home.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -10,15 +10,15 @@ const routes: Array<RouteRecordRaw> = [
             {
                 path: '',
                 name: 'Home',
-                component: Home
-            }
-        ]
-    }
+                component: Home,
+            },
+        ],
+    },
 ]
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes
+    routes,
 })
 
 export default router

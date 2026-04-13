@@ -31,6 +31,14 @@ export const useConfig = defineStore('config', () => {
         headerBarTabColor: [],
     })
 
+    function menuWidth() {
+        if (layout.shrink) {
+            return layout.menuCollapse ? '0px' : layout.menuWidth + 'px'
+        }
+        // 菜单是否折叠
+        return layout.menuCollapse ? '64px' : layout.menuWidth + 'px'
+    }
+
     const getColorVal = function (name: keyof Layout): string {
         const colors = layout[name] as string[]
         if (layout.isDark) {
@@ -39,5 +47,5 @@ export const useConfig = defineStore('config', () => {
             return colors[0]
         }
     }
-    return { layout, getColorVal }
+    return { layout, getColorVal,menuWidth }
 })
