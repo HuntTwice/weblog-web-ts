@@ -17,12 +17,11 @@ defineOptions({
 })
 
 const config = useConfig()
-const navTabs = useNavTabs()
 
 const menuWidth = computed(() => config.menuWidth())
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .layout-aside-Default {
     background: var(--ba-bg-color-overlay);
     margin: 16px 0 16px 16px;

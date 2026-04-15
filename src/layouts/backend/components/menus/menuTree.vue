@@ -1,7 +1,7 @@
 <template>
     <!-- 1. 循环遍历父组件传过来的菜单列表 -->
     <template v-for="menu in props.menus">
-        <!-- 2. 如果当前菜单有【子菜单】，渲染 el-sub-menu 折叠菜单 -->
+        <!-- 2. 如果当前菜单有子菜单，渲染 el-sub-menu 折叠菜单 -->
         <template v-if="menu.children && menu.children.length > 0">
             <el-sub-menu @click="onClickSubMenu(menu)" :index="getMenuKey(menu)" :key="getMenuKey(menu)">
                 <!-- 菜单标题：图标 + 文字 -->
@@ -13,7 +13,7 @@
                 <MenuTree :extends="{ ...props.extends, level: props.extends.level + 1 }" :menus="menu.children" />
             </el-sub-menu>
         </template>
-        <!-- 3. 如果当前菜单【没有子菜单】，渲染普通菜单项 el-menu-item -->
+        <!-- 3. 如果当前菜单没有子菜单，渲染普通菜单项 el-menu-item -->
         <template v-else>
             <el-menu-item @click="onClickMenu(menu)" :index="getMenuKey(menu)" :key="getMenuKey(menu)">
                 <Icon :color="config.getColorVal('menuColor')" :name="menu.meta?.icon ? menu.meta?.icon : config.layout.menuDefaultIcon" />
@@ -30,7 +30,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { useConfig } from '/@/stores/config'
 import { getFirstRoute, getMenuKey, onClickMenu } from '/@/utils/router'
 
-const { t } = useI18n()
+// const { t } = useI18n()
 const config = useConfig()
 
 interface Props {

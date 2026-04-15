@@ -10,7 +10,7 @@ export const useSiteConfig = defineStore('siteConfig', {
             headNav: [],
             initialize: false,
             recordNumber: '',
-            siteName: '',
+            siteName: 'Weblog',
             upload: { mode: 'local' },
             userInitialize: false,
             version: '',

@@ -18,3 +18,11 @@ export function registerIcons(app: App) {
         app.component(`el-icon-${icons[i].name}`, icons[i])
     }
 }
+
+/**
+ * 是否是外部链接
+ * @param path
+ */
+export function isExternal(path: string): boolean {
+    return /^(https?|ftp|mailto|tel):/.test(path)
+}

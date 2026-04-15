@@ -47,5 +47,8 @@ export const useConfig = defineStore('config', () => {
             return colors[0]
         }
     }
-    return { layout, getColorVal,menuWidth }
+    const setLayout = (name: keyof Layout, value: any) => {
+        ;(layout[name] as any) = value
+    }
+    return { layout, getColorVal, menuWidth, setLayout }
 })
