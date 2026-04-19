@@ -23,12 +23,12 @@ export const useConfig = defineStore('config', () => {
         menuUniqueOpened: false,
         menuShowTopBar: true,
 
-        //顶栏
-        headerBarBackground: [],
-        headerBarHoverBackground: [],
-        headerBarTabActiveBackground: [],
-        headerBarTabActiveColor: [],
-        headerBarTabColor: [],
+        // 顶栏
+        headerBarTabColor: ['#000000', '#CFD3DC'],
+        headerBarTabActiveBackground: ['#ffffff', '#1d1e1f'],
+        headerBarTabActiveColor: ['#000000', '#409EFF'],
+        headerBarBackground: ['#ffffff', '#1d1e1f'],
+        headerBarHoverBackground: ['#f5f5f5', '#18222c'],
     })
 
     function menuWidth() {
